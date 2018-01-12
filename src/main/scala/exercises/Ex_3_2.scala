@@ -6,21 +6,16 @@ import scala.util.{Failure, Try}
 // What are different choices you could make in your implementation if the List is Nil?
 object Ex_3_2 {
 
-  sealed trait List[+A] {
-    def tail:List[A]
-  }
+  sealed trait List[+A]
 
-  case object Nil extends List[Nothing] {
-    override def tail: List[Nothing] = throw new UnsupportedOperationException("tail of empty list")
-  }
-  case class Cons[+A](head: A, t: List[A]) extends List[A] {
-    override def tail: List[A] = t
-  }
+  case object Nil extends List[Nothing]
+  case class Cons[+A](head: A, t: List[A]) extends List[A]
 
   object List {
-    def sum(ints: List[Int]): Int = ints match {
-      case Nil => 0
-      case Cons(x, xs) => x + sum(xs)
+
+    def tail[A](l: List[A]): List[A] = l match {
+      case Nil => throw new UnsupportedOperationException("no tail in an empty list")
+      case Cons(_, t) => t
     }
 
     def apply[A](as: A*): List[A] = if (as.isEmpty) Nil else Cons(as.head, apply(as.tail: _*))
@@ -28,12 +23,12 @@ object Ex_3_2 {
 
   def main(args: Array[String]): Unit = {
 
-    assert(List(1,2,3,4,5,6).tail == List(2,3,4,5,6))
+    import List._
+    assert(tail(List(1,2,3,4,5,6)) == List(2,3,4,5,6))
 
-    Try(Nil.tail) match {
+    Try(tail(Nil)) match {
       case Failure(e) if e.isInstanceOf[UnsupportedOperationException] => println("right exception")
       case _ => println("bad result")
     }
   }
-
 }
