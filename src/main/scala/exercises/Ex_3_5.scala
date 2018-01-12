@@ -1,7 +1,5 @@
 package exercises
 
-import scala.util.{Failure, Try}
-
 //Implement dropWhile, which removes elements from
 // the List prefix as long as they match a predicate.
 object Ex_3_5 {
@@ -13,11 +11,6 @@ object Ex_3_5 {
   case class Cons[+A](head: A, t: List[A]) extends List[A]
 
   object List {
-
-    def tail[A](l: List[A]): List[A] = l match {
-      case Nil => throw new UnsupportedOperationException("no tail in an empty list")
-      case Cons(_, t) => t
-    }
 
     def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
       case Nil => Nil
@@ -31,10 +24,9 @@ object Ex_3_5 {
 
   def main(args: Array[String]): Unit = {
     import List.dropWhile
-    assert(dropWhile[Int](Nil, e =>  true) == Nil)
+    assert(dropWhile[Int](Nil, e => true) == Nil)
     assert(dropWhile[Int](List(1, 2, 3), _ <= 2) == List(3))
     assert(dropWhile[String](List("al", "alvaro", "putney", "london"), (e: String) => e.startsWith("al")) == List("putney", "london"))
-    //    assert(drop(List(1, 2, 3), 3) == Nil)
   }
 
 
