@@ -37,7 +37,5 @@ object Ex_3_12 {
 
     assert(foldLeft(List(1, 2, 3, 4), Nil:List[Int])((a,b) => Cons(b,a)) == List(4, 3, 2, 1))
     assert(foldLeft(Nil, Nil:List[Int])((a,b) => Cons(b,a)) == Nil)
-
-
   }
 }

@@ -2,8 +2,9 @@ package exercises
 
 import scala.annotation.tailrec
 
-//Write sum, product, and a function to compute the length of a list using foldLeft.
-object Ex_3_11 {
+
+//Hard: Can you write foldLeft in terms of foldRight? How about the other way around?
+object Ex_3_13 {
 
   sealed trait List[+A]
 
@@ -21,15 +22,25 @@ object Ex_3_11 {
       }
     }
 
+    def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B =
+      as match {
+        case Nil => z
+        case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+      }
+
+    def foldLeftNoTailRec[A, B](as: List[A], z: B)(f: (B, A) => B): B = ??? //todo
+
+    def foldRightTailRec[A, B](as: List[A], z: B)(f: (A, B) => B): B = ??? //todo
+
+
+
     def apply[A](as: A*): List[A] = if (as.isEmpty) Nil else Cons(as.head, apply(as.tail: _*))
   }
 
   def main(args: Array[String]): Unit = {
     import List._
 
-    assert(foldLeft(List(1, 2, 3, 4), 0)(_ + _) == 10)
-    assert(foldLeft(List(1, 2, 3, 4), 1)(_ * _) == 24)
-    assert(foldLeft(List(1, 2, 3, 4), 0)((b,a) => b + 1) == 4)
-    assert(foldLeft(Nil: List[Int], 0)((b,a) => b + 1) == 0)
+    assert(foldLeftNoTailRec(List(1, 2, 3, 4), 1)(_ * _) == 24)
+
   }
 }
