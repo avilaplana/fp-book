@@ -13,7 +13,6 @@ object Ex_3_17 {
 
     def mapToString(source: List[Double]): List[String] = source match {
       case Nil => Nil
-      case Cons(x, Nil) => Cons(x.toString, Nil)
       case Cons(x, xs) => Cons(x.toString, mapToString(xs))
     }
 
