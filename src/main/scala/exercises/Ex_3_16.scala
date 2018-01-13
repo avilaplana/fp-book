@@ -10,10 +10,6 @@ object Ex_3_16 {
 
   case class Cons[+A](head: A, t: List[A]) extends List[A]
 
-  //  {
-  //    def a(c: A) = ???
-  //  }
-
   object List {
 
     def plusOne(l: List[Int]): List[Int] = {
