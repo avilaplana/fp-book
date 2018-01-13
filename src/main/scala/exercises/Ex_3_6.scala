@@ -15,7 +15,7 @@ object Ex_3_6 {
   case class Cons[+A](head: A, t: List[A]) extends List[A]
 
   object List {
-    
+
     def init[A](l: List[A]): List[A]= l match {
       case Nil => throw new UnsupportedOperationException("no init in an empty list")
       case Cons(h, Nil) => Nil
