@@ -10,7 +10,10 @@ object Ex_3_27 {
   case class Branch[A](left: Tree[A], right: Tree[A]) extends Tree[A]
 
   object Tree {
-    def depth(t: Tree[Int]): Int = ???
+    def depth(t: Tree[Int]): Int = t match {
+      case Leaf(_) => 1
+      case Branch(l,r) => scala.math.max(1 + depth(l), 1 + depth(r))
+    }
   }
 
   def main(args: Array[String]): Unit = {
@@ -19,6 +22,6 @@ object Ex_3_27 {
     assert(depth(Branch(Leaf(1), Leaf(2))) == 2)
     assert(depth(Branch(Branch(Leaf(1), Leaf((7))), Branch(Leaf(3), Leaf((5))))) == 3)
     assert(depth(Branch(Branch(Leaf(1), Branch(Leaf(6), Leaf((18)))), Branch(Leaf(3), Leaf((5))))) == 4)
-    assert(depth(Branch(Branch(Leaf(1), Leaf((7))), Leaf(8))) == 2)
+    assert(depth(Branch(Branch(Leaf(1), Leaf((7))), Leaf(8))) == 3)
   }
 }
