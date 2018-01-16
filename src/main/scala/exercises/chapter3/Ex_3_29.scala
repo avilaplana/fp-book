@@ -1,14 +1,5 @@
 package exercises.chapter3
 
-import exercises.chapter3.Ex_3_25.Tree.size
-import exercises.chapter3.Ex_3_25.{Branch, Leaf, Tree}
-import exercises.chapter3.Ex_3_26.{Branch, Leaf, Tree}
-import exercises.chapter3.Ex_3_26.Tree.max
-import exercises.chapter3.Ex_3_27.{Branch, Leaf, Tree}
-import exercises.chapter3.Ex_3_27.Tree.depth
-import exercises.chapter3.Ex_3_28.{Branch, Leaf, Tree}
-import exercises.chapter3.Ex_3_28.Tree.map
-
 
 //Generalize size, maximum, depth, and map, writing a new function fold that abstracts over their similarities.
 // Reimplement them in terms of this more general function.
