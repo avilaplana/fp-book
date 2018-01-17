@@ -42,13 +42,9 @@ object Ex_4_2 {
 
   object Option {
     def variance(xs: Seq[Double]): Option[Double] = {
-      val mean: Seq[Double] => Double = s => s.sum / s.length
-      xs match {
-        case Nil => None
-        case s@_ =>
-          val m = mean(s)
-          Some(mean(s.map(x => math.pow(x - m, 2))))
-      }
+
+      val mean: Seq[Double] => Option[Double] = s => if (s.isEmpty) None else Some(s.sum / s.length)
+      mean(xs).flatMap(m => mean(xs.map(x => math.pow(x - m, 2))))
     }
   }
 
@@ -62,7 +58,7 @@ object Ex_4_2 {
   def main(args: Array[String]): Unit = {
     import Option._
 
-    def truncate(d: Double): Double = (math floor d * 100)/100
+    def truncate(d: Double): Double = (math floor d * 100) / 100
 
     assert(truncate(variance(Seq(1, 4, 5, 7, 8, 10)).get) == 8.47D)
     assert(truncate(variance(Seq(1, 2, 5, 9, 10, 12)).get) == 16.91D)
