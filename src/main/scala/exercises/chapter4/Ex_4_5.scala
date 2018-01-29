@@ -1,4 +1,4 @@
-package exercises.folder4
+package exercises.chapter4
 
 //Implement this function. It’s straightforward to do using map and sequence, but try for a more efficient
 // implementation that only looks at the list once. In fact, implement sequence in terms of traverse.
@@ -45,7 +45,7 @@ package exercises.folder4
   object Option {
 //    def map2[A, B, C](a: Option[A], b: Option[B])(f: (A, B) => C): Option[C] = a.flatMap(a1 => b.map(b1 => f(a1, b1)))
 
-    def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
+    def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ??? //todo
 
   }
 

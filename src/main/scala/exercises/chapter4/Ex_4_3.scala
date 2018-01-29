@@ -1,4 +1,4 @@
-package exercises.folder4
+package exercises.chapter4
 
 //Write a generic function map2 that combines two Option values using a binary function.
 // If either Option value is None, then the return value is too.

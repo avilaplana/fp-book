@@ -1,4 +1,4 @@
-package exercises.folder4
+package exercises.chapter4
 
 
 //Implement all of the preceding functions on Option. As you implement each function

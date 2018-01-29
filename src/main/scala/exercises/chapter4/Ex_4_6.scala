@@ -1,4 +1,4 @@
-package exercises.folder4
+package exercises.chapter4
 
 //Implement versions of map, flatMap, orElse, and map2 on Either that operate on the Right value.
 object Ex_4_6 {
