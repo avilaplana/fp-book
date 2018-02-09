@@ -17,9 +17,8 @@ object Ex_6_1 {
 
   def nonNegativeInt(rng: RNG): (Int, RNG) = {
     rng.nextInt match {
-      case (i,r) if i >= 0 => (i,r)
+      case (i,r) if i > Int.MinValue => (i.abs,r)
       case (i,r) if i == Int.MinValue => nonNegativeInt(r)
-      case (i,r) => (-i, r)
     }
   }
 
@@ -29,5 +28,10 @@ object Ex_6_1 {
     val (i2,r2) = nonNegativeInt(r1)
     val (i3,r3) = nonNegativeInt(r2)
     val (i4,r4) = nonNegativeInt(r3)
+
+    println(i1)
+    println(i2)
+    println(i3)
+    println(i4)
   }
 }
