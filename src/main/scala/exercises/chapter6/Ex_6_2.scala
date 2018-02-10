@@ -21,26 +21,26 @@ object Ex_6_2 {
 
   def nonNegativeInt(rng: RNG): (Int, RNG) = {
     rng.nextInt match {
-      case (i,r) if i >= 0 => (i,r)
-      case (i,r) if i == Int.MinValue => nonNegativeInt(r)
-      case (i,r) => (-i, r)
+      case (i, r) if i >= 0 => (i, r)
+      case (i, r) if i == Int.MinValue => nonNegativeInt(r)
+      case (i, r) => (-i, r)
     }
   }
 
   def double(rng: RNG): (Double, RNG) = {
     rng.nextInt match {
-      case (i, r) if i == Int.MaxValue => double(r)
-      case (i, r) => (i.abs.toDouble/Int.MaxValue, r)
+      case (i, r) if i == Int.MaxValue => (0D, r)
+      case (i, r) => (i.abs.toDouble / Int.MaxValue, r)
     }
 
   }
 
 
   def main(args: Array[String]) = {
-    val (i1,r1) = double(new SimpleRNG(1000))
-    val (i2,r2) = double(r1)
-    val (i3,r3) = double(r2)
-    val (i4,r4) = double(r3)
+    val (i1, r1) = double(new SimpleRNG(1000))
+    val (i2, r2) = double(r1)
+    val (i3, r3) = double(r2)
+    val (i4, r4) = double(r3)
 
     println(i1)
     println(i2)
