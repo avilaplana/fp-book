@@ -1,7 +1,5 @@
 package exercises.chapter6
 
-import exercises.chapter6.Ex_6_5.Rand
-
 object Ex_6_7 {
 
   trait RNG {
@@ -19,20 +17,30 @@ object Ex_6_7 {
 
   type Rand[+A] = RNG => (A, RNG)
 
-  def map[A, B](s: Rand[A])(f: A => B): Rand[B] =
-    rng => {
-      val (a, rng2) = s(rng)
-      (f(a), rng2)
+  def sequence[A](fs: List[Rand[A]]): Rand[List[A]] =
+    fs.foldRight[Rand[List[A]]](rng => (Nil, rng)) {
+      (a, b) =>
+        rng =>
+          val (aa, rng1): (A, RNG) = a(rng)
+          val (l, rng2): (List[A], RNG) = b(rng1)
+          (aa :: l, rng2)
     }
 
-  def map2[A, B, C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] =
-    rng => {
-      val (a, rng1) = ra(rng)
-      val (b, rng2) = rb(rng1)
-      (f(a, b), rng2)
+  def main(args: Array[String]) = {
+    val f1: Rand[String] = r => {
+      val (a, rgn) = r.nextInt
+      (s"$a is String", rgn)
     }
 
-  def sequence[A](fs: List[Rand[A]]): Rand[List[A]]
+    val f2: Rand[String] = r => {
+      val (a, rgn) = r.nextInt
+      (s"$a in London", rgn)
+    }
 
-  
+    val s: Rand[List[String]] = sequence[String](List(f1, f2))
+    val (l,rng) = s(new SimpleRNG(1000))
+    println(l)
+  }
+
+
 }
