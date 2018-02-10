@@ -38,4 +38,36 @@ object Ex_6_4 {
     println(l1)
     println(l2)
   }
+
+  //  val (l1, r1) = ints(5)(new SimpleRNG(1000))
+
+  //    count = 5
+  //  val (i5, r5) = rng.nextInt
+  //  val (l5, r4) = ints(4)(r5)
+  //  (i5 :: l5, r4)
+  //    count = 4
+  //  val (i4, r4) = r5.nextInt
+  //  val (l4, r3) = ints(3)(r4)
+  //  (i4 :: l4, r3)
+  //    count = 3
+  //  val (i3, r3) = r4.nextInt
+  //  val (l3, r2) = ints(2)(r3)
+  //  (i3 :: l3, r2)
+  //    count = 2
+  //  val (i2, r2) = r3.nextInt
+  //  val (l2, r1) = ints(1)(r2)
+  //  (i2 :: l2, r1)
+  //    count = 1
+  //  val (i1, r1) = r2.nextInt
+  //  val (l1, r0) = ints(0)(r1)
+  //  (i1 :: l1, r0)
+  //    count = 0
+  //  (Nil,r1)
+//  ((i1 :: Nil), r0)
+//  ((i2:: (i1 :: Nil)), r1)
+//  ((i3 :: (i2:: (i1 :: Nil))), r2)
+//  ((i4 :: (i3 :: (i2:: (i1 :: Nil)))), r3)
+//  ((i5 :: (i4 :: (i3 :: (i2:: (i1 :: Nil))))), r4)
+
+
 }
